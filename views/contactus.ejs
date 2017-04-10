@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <% 
+  var errors=errors || null;
+  var _csrf=_csrf|| null;
+  if(errors){
+    %>
+    <p> The following errors occured</p>
+    <ul>
+    <%
+    for(var e of errors){
+      %>
+      <li><%= e.msg %></li>
+      <%
+    }
+    
+  }
+
+  %>
+    <form action="http://localhost:4000/contactus" method ="post">
+    FullName<input type="text" name="fullName"/><br/>
+    suggestion <input type="radio" name="type" value="suggestion"/>
+    complaint  <input type="radio" name="type" value="complaint"/><br/>
+    <textarea rows="15" cols="15" name="message"></textarea><br/>
+    <input type="text" name="_csrf" value="<%= _csrf %>"/>
+    <input type="submit" value="Send"/>
+    
+    </form>
+  </body>
+</html>
